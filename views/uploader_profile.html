@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/home_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/login_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <title>Uploader profile!</title>
+    
+</head>
+ 
+<body class="uploaderpage">
+
+  <% include uploader_navbar.html %>
+  <link href="css/uploader_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  
+  <div class="materialContainer update-profile-box">
+    <div class="box row" style="display: inline-block;  border: 1px solid #EEE;">
+      <div class="title color-green">Update Profile</div>
+      <form method="POST" action="/updateProfile">
+        
+            <div class="input">
+              <label for="textfield_firstname">First Name</label>
+              <input class= "remove-border" type="text" id="textfield_firstname" name="firstname" value='<%= user_details.firstname%>'/>
+              <span class="spin"></span>  
+            </div>
+
+            <div class="input">
+              <label for="textfield_lastname">Last Name</label>
+              <input class= "remove-border" type="text" id="textfield_lastname" name="lastname" value='<%= user_details.lastname%>'/>
+              <span class="spin"></span>
+            </div>
+
+            <div class="input">
+              <label for="textfield_email">Email</label>
+              <input class= "remove-border" readonly type="text" id="textfield_email" name="email" value='<%= user_details.email%>'/>
+              <span class="spin"></span>
+            </div>
+
+            <div class="input">
+              <label for="textfield_role">Role</label>
+              <input class= "remove-border" readonly type="text" id="textfield_role" name="role" value='<%= user_details.role%>'/>
+              <span class="spin"></span>
+            </div>
+
+            <div class="button login ">
+              <button type="submit">
+                <span>
+                  Update Profile
+                </span> 
+              </button>
+            </div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/index.js"></script>
+
+</body>
+</html>

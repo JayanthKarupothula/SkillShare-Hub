@@ -1,0 +1,45 @@
+{
+  "name": "teachit",
+  "version": "1.0.0",
+  "description": "A platform to teach everything!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jashjhaveri/TeachIt.git"
+  },
+  "author": "Jash Jhaveri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jashjhaveri/TeachIt/issues"
+  },
+  "homepage": "https://github.com/jashjhaveri/TeachIt#readme",
+  "dependencies": {
+    "async": "^2.1.2",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "crypto": "0.0.3",
+    "ejs": "^2.5.2",
+    "express": "^3.4.8",
+    "fluent-ffmpeg": "^2.1.0",
+    "gridfs-stream": "^1.1.1",
+    "material-design-lite": "^1.2.1",
+    "materialize-css": "^0.97.8",
+    "mongodb": "^2.2.11",
+    "mongoose": "^4.6.5",
+    "multer": "^1.2.0",
+    "nodemailer": "^2.6.4",
+    "now": "^0.28.0",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-github": "^1.1.0",
+    "passport-google-oauth": "^1.0.0",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4",
+    "paypal-rest-sdk": "^1.7.0",
+    "socket.io": "^1.5.1"
+  }
+}

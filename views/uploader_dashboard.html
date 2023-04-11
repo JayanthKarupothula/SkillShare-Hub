@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+        <!-- CSS  -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="css/home_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
+        <!-- <link href="css/login_style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
+        <title>Uploader dashboard!</title>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+
+          // Load the Visualization API and the corechart package.
+          google.charts.load('current', {'packages':['corechart']});
+
+          // Set a callback to run when the Google Visualization API is loaded.
+          google.charts.setOnLoadCallback(drawChart);
+
+          // Callback that creates and populates a data table,
+          // instantiates the pie chart, passes in the data and
+          // draws it.
+          function drawChart() {
+
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Courses');
+            data.addColumn('number', 'Viewers');
+            data.addRows([
+              ['Algorithms', 125],
+              ['Big Data', 75],
+              ['Desserts', 50],
+              ['Football', 250],
+              ['Indian', 86]
+            ]);
+
+            // Set chart options
+            var options = {'title':'% of Viewers per Course',
+                           'width':400,
+                           'height':300};
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+          }
+        </script>
+        <script type="text/javascript">
+
+          // Load the Visualization API and the corechart package.
+          google.charts.load('current', {'packages':['corechart']});
+
+          // Set a callback to run when the Google Visualization API is loaded.
+          google.charts.setOnLoadCallback(drawChart);
+
+          // Callback that creates and populates a data table,
+          // instantiates the pie chart, passes in the data and
+          // draws it.
+          function drawChart() {
+
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Courses');
+            data.addColumn('number', 'Viewers');
+            data.addRows([
+              ['Algorithms', 15],
+              ['Big Data', 25],
+              ['Desserts', 50],
+              ['Football', 85],
+              ['Indian', 50]
+              
+            ]);
+
+            // Set chart options
+            var options = {'title':'% of Likes per Course',
+                           'width':400,
+                           'height':300};
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div3'));
+            chart.draw(data, options);
+          }
+        </script>
+        <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Days', 'Football', 'Indian'],
+          ['1',  10,      4],
+          ['10', 15,      20],
+          ['30', 36,      29],
+          ['60', 89,      75]
+        ]);
+
+        var options = {
+          title: 'Views per day',
+          hAxis: {title: 'Days',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div2'));
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Days', 'Football', 'Indian'],
+          ['1',  0,      1],
+          ['10', 5,      25],
+          ['30', 36,      29],
+          ['60', 20,      10]
+        ]);
+
+        var options = {
+          title: 'Comments per day',
+          hAxis: {title: 'Days',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div4'));
+        chart.draw(data, options);
+      }
+    </script>
+    </head>
+    <body class = "uploaderpage" style="overflow-y: auto !important;">
+      <% include uploader_navbar.html %>
+      <link href="css/uploader_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+      <div class="row">
+        <br/>
+        <div class="col s1">
+        </div>
+
+        <div class="col s3">
+          <div>
+          
+          <ul class="collapsible popout" data-collapsible="accordion">
+            <li class="courses center collapsed-button">
+              <p><b><I>SPECIALIZATIONS</I></b> </p>
+            </li>
+            <%  for(var i=0; i<courses.length; i++) { %>
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">
+                </i>
+               <%= courses[i].course_genre %>
+              </div>
+              <div class="collapsible-body">
+                <ul class="collapsed-button">
+                 
+                  <li class="list-pad">
+                  <form method="post" action='/editcourse'>
+                    <div>
+                        <button type="submit" class="waves-effect btn-flat" name='<%= courses[i].course_name %>'>
+                        <%= courses[i].course_name %>
+                        </button>
+                    </div>
+                  </form>
+                  <br/> 
+                  </li>
+                </ul>
+              </div>
+            </li>
+                <% } %>
+              
+          </ul> 
+          </div>
+        </div>
+
+        <div class="col s8">
+        <div class="col s6 black-text">
+          <div id="chart_div" class="card"></div>
+          <div id="chart_div2" style="width: 100%; height: 500px;" class="card"></div>
+        </div>
+
+        <div class="col s6">
+           <div id="chart_div3" class="card"></div>
+           <div id="chart_div4" style="width: 100%; height: 500px;" class="card"></div>
+        </div>
+        </div>
+      </div>
+    </body>
+</html>

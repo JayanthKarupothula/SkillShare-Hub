@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/home_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/login_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    
+</head>
+ 
+<body class="loginpage">
+
+  <nav class="navbar-color" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="\" class="brand-logo">
+        <img src="images\hometeachitlogo.png" alt="LOGO">
+      </a>
+      <a href="#" data-activates="nav-mobile" class="button-collapse">
+        <i class="material-icons">
+        menu
+        </i>
+      </a>
+    </div>
+  </nav>
+
+
+
+  <div class="materialContainer">
+<!--     <h5 class="dark-green-text">
+      LOGIN
+    </h5>  -->
+
+<!--
+
+<form method="POST" action="">
+                    <input type="hidden" name="action" value="login"/>
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                        <label class="mdl-textfield__label mdl-color-text--grey" for="textfield_email">Email</label>
+                        <input class="mdl-textfield__input" type="text" id="textfield_email" name="email"/>
+                    </div>
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                        <label class="mdl-textfield__label mdl-color-text--grey" for="textfield_password">Password</label>
+                        <input class="mdl-textfield__input" type="password" id="textfield_password" name="password"/>
+
+                    </div>
+
+                    <div class="mdl-cell mdl-cell--12-col send-button" align="center">
+
+                        <button type="submit" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored mdl-color--primary">
+                            Log In
+                        </button>
+                    </div>
+
+                </form>
+
+-->
+
+
+
+<div class="box row" style="display: inline-block;  border: 1px solid #EEE;">
+  <div class="title color-green">LOGIN</div>
+  <form method="POST" action="">
+    <input type="hidden" name="action" value="login"/>
+    
+    <div class="input">
+      <label for="textfield_email">Email</label>
+      <input type="text" id="textfield_email" name="email">
+      <span class="spin"></span>
+    </div>
+
+    <div class="input">
+      <label for="textfield_password">Password</label>
+      <input type="password" id="textfield_password" name="password">
+      <span class="spin"></span>
+    </div>
+
+    <div class="button login ">
+      <button type="submit">
+        <span>
+          GO
+        </span> 
+      </button>
+    </div>
+
+
+  </form>
+  <div class="pass-forgot">
+      <a href="/auth/facebook" >
+        <img src="images/facebook.png" height="50px"/>
+      </a>
+
+      <a href="/auth/google" >
+       <img src="images/gmail.png" height="48px"/>
+      </a>
+
+
+    </div>
+      <a method="GET" href="/forgot" class="pass-forgot">
+      Forgot your password?
+      </a>
+</div>
+
+<div class="overbox">
+<div class="material-button alt-2 button-bgcolor"><span class="shape"></span></div>
+
+<div class="title">REGISTER</div>
+    <form method="POST" action="/register">
+          <input type="hidden" name="action" value="register"/>
+    <div class="input">
+    <label for="textfield_new_firstname">First Name</label>
+    <input type="text" id="textfield_new_firstname" name="firstname">
+    <span class="spin"></span>
+    </div>
+
+    <div class="input">
+    <label for="email">Last Name</label>
+    <input type="text" id="textfield_new_lastname" name="lastname" >
+    <span class="spin"></span>
+    </div>
+
+    <div class="input">
+    <label for="textfield_new_lastname">Email</label>
+    <input type="text" id="email" name="email">
+    <span class="spin"></span>
+    </div>
+
+
+
+    <div class="input">
+    <label for="textfield_new_password">Password</label>
+    <input type="password" id="textfield_new_password" name="password">
+    <span class="spin"></span>
+    </div>
+
+
+
+    <div class="input">
+    <div class="row">
+    <div class="col s6">
+    <input name="role" type="radio" id="option_uploader" value="viewer"/>
+    <label for="option_uploader">Viewer</label>
+    </div>
+    <div class="col s6">
+    <input name="role" type="radio" id="option_user" value="uploader" />
+    <label for="option_user">Uploader</label>
+    </div>
+    </div>
+    </div>
+
+
+    <div class="button">
+    <button type="submit"><span>REGISTER</span></button>
+    </div>
+    </form>
+</div>
+
+</div>
+
+
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/index.js"></script>
+
+</body>
+</html>

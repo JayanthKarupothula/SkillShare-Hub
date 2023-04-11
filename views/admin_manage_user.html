@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- CSS  -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/home_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<title>Admin Dashboard!</title>
+
+</head>
+
+<body>
+
+<% include admin_navbar_dashboard.html %>
+	<link href="css/admin_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	
+
+	<ul class="collection with-header card">
+        <li class="collection-header"><h4>List of all <%= user_type %></h4></li>
+	<% for(var i=0; i<user_list.length; i++) { %>
+        <li class="collection-item card"><div><%= user_list[i].user.first_name %> <br/> <%= user_list[i].user.email %> <a href="#!" class="secondary-content"><i class="material-icons">delete</i></a></div></li>
+     <% } %>
+     </ul>
+
+
+
+
+<!-- <br/><br/><br/>
+
+List of all <%= user_type %>
+<ul class="mdl-list">
+<% for(var i=0; i<user_list.length; i++) { %>
+	<li class="mdl-list__item mdl-list__item--two-line">
+		<span class="mdl-list__item-primary-content">
+	      <i class="material-icons  mdl-list__item-avatar">person</i>
+	      <span><%= user_list[i].user.first_name %></span>
+	      <span class="mdl-list__item-sub-title"><%= user_list[i].user.email %></span>
+	    </span>
+	    <span class="mdl-list__item-secondary-content">
+	      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">delete</i></a>
+	    </span>
+	</li>
+<% } %>
+</ul> -->
+
+
+
+
+</body>
+</html>
+

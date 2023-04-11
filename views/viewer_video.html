@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <link rel="stylesheet" href="/scripts/material.min.css">
+      <script src="/scripts/material.min.js"></script>
+      <script type="text/javascript" src="/js/jwplayer.js"></script>
+      <script>jwplayer.key="fNMS9OobQNK60RX98PytRr3Zm8QrkDYmnapXlA==";</script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <meta name="viewport" submit="width=device-width, initial-scale=1.0">
+      <title>View Video!</title>
+    </head>
+    <body class="viewerhomepage01">   
+    <% include viewer_navbar.html %>
+      <br/><br/><br/><br/> 
+      <div class="mdl-layout">
+        <div id="player"></div>
+        <script type="text/javascript">
+            jwplayer("player").setup({
+                file: '<%= video_name %>',
+                height: "360",
+                width: "640",
+                tracks: [{ 
+                  file: '<%= video_thumbnail_vttfile %>',
+                  kind: "thumbnails"
+                }, {
+                  file:'<%= video_marker_vttfile %>',
+                  kind:'chapters'
+                }]
+
+
+            });
+            var clicked = false;
+            var ques = '<%= video_quiz_qn %>';
+            jwplayer().onReady(function() { 
+              jwplayer().onTime(function(event) {
+                  if(Math.floor(event.position) == 3 && !clicked) {
+                        clicked = true;
+                        jwplayer().pause();
+                        var bgdiv = document.createElement("div");
+                        var texdiv = document.createElement("div");
+                        var quizform = document.createElement("form");
+                        var quizquestion = document.createElement("div");
+                        var truebutton = document.createElement("input");
+                        var truebuttondiv = document.createElement("div");
+                        var falsebutton = document.createElement("input");
+                        var falsebuttondiv = document.createElement("div");
+                        var breaktag = document.createElement('br');
+                        // var submit = document.createElement("button");
+                        var submit = document.createElement('a');
+
+                        if (jwplayer().getRenderingMode() == "html5"){
+                          var theBody = document.getElementById(player.id);
+                        } else {
+                          var theBody = document.getElementById(player.id+"_wrapper");
+                        }
+                        var playerWidthPX2 = theBody.style.width;
+                        var playerWidthPX = parseFloat(playerWidthPX2);
+                        var playerHeightPX2 = theBody.style.height;
+                        var playerHeightPX = parseFloat(playerHeightPX2);
+
+                        bgdiv.setAttribute('id', 'bg');
+                        bgdiv.style.height = playerHeightPX + "px";
+                        bgdiv.style.width = playerWidthPX2;
+                        bgdiv.style.background = "#333333";
+                        bgdiv.style.opacity = "0.70";
+                        bgdiv.style.position = "absolute";
+                        bgdiv.style.zIndex = "900";
+
+                        texdiv.style.textAlign = "center";
+                        texdiv.style.paddingTop  = playerHeightPX/2.0;
+
+                        quizquestion.innerHTML = ques;
+                        quizquestion.style.fontFamily = "arial,_sans";
+                        quizquestion.style.fontSize = "18px";
+                        quizquestion.style.color = "#ffffff"
+
+                        truebuttondiv.innerHTML = 'TRUE';
+                        truebuttondiv.style.color = "#ffffff";
+                        truebutton.name = 'quizanswer';
+                        truebutton.value = 'True';
+                        truebutton.type = 'radio';
+                        truebutton.setAttribute('id', 'true');
+                        truebutton.style.fontFamily = "arial,_sans";
+
+                        falsebuttondiv.innerHTML = 'FALSE';
+                        falsebuttondiv.style.color = "#ffffff"
+                        falsebutton.name = 'quizanswer';
+                        falsebutton.value = 'False';
+                        falsebutton.type = 'radio';
+                        falsebutton.setAttribute('id', 'false');
+                        falsebutton.style.fontFamily = "arial,_sans";
+
+                        var message = 'Submit';
+                        submit.innerHTML = message;
+                        submit.href = "#";
+                        submit.style.textDecoration = "none";
+                        submit.style.outline = "0";
+                        submit.style.MozUserSelect = 'none';
+                        submit.style.KhtmlUserSelect = 'none';
+                        submit.style.WebkitUserSelect = 'none';
+                        submit.style.OUserSelect = 'none';
+                        submit.style.UserSelect = 'none';
+                        submit.style.fontSize = "18px";
+                        submit.style.color = "#ffffff";
+                        submit.style.fontFamily = "arial,_sans";
+                        submit.setAttribute('id', 'txt');
+
+
+                        theBody.appendChild(bgdiv); 
+                        bgdiv.appendChild(texdiv); 
+                        texdiv.appendChild(quizform);
+                        quizform.appendChild(breaktag);
+                        quizform.appendChild(quizquestion);
+                        quizform.appendChild(breaktag);
+                        quizform.appendChild(truebuttondiv);
+                        truebuttondiv.appendChild(truebutton);
+                        quizform.appendChild(breaktag);
+                        quizform.appendChild(falsebuttondiv);
+                        falsebuttondiv.appendChild(falsebutton);
+                        falsebuttondiv.appendChild(falsebutton);
+                        quizform.appendChild(breaktag);
+                        quizform.appendChild(submit);
+                        quizform.appendChild(breaktag);
+
+                        var ans = <%= video_quiz_ans %>;
+                        var errordiv = document.createElement("div");
+                        errordiv.innerHTML = 'Incorrect Answer. Try again!';
+                        errordiv.style.visibility = "hidden";
+                        errordiv.style.color = "#ffffff";
+                        quizform.appendChild(errordiv);
+                        quizform.appendChild(breaktag);
+                        submit.onmouseup = function(){
+                          if((document.getElementById("true").checked && ans == true) || (document.getElementById("false").checked && ans == false)){
+                            bgdiv.style.display = "none"; 
+                            jwplayer().play();
+                          }
+                          else{
+                            errordiv.style.visibility = "visible";
+                          }
+                          
+                        }
+
+
+                        quizform.style.zIndex = "999";
+                        submit.style.zIndex = "2000";
+                        truebutton.style.zIndex = "999";
+                        falsebutton.style.zIndex = "999";
+
+                  }
+              });
+
+              
+
+            });
+        </script>
+      </div>
+    </body>
+</html>
+
+<!--file: "/videos/myThumbnails.vtt", -->

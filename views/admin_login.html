@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/home_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/login_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <title>Admin Register!</title>
+    
+</head>
+ 
+<body class="loginpage">
+
+  <% include admin_navbar.html %>
+  <link href="css/admin_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  
+  <div class="materialContainer update-profile-box">
+        <div class="box row" style="display: inline-block;  border: 1px solid #EEE;">
+          <div class="title color-green">Admin Register</div>
+            <form method="POST" action="/adminregister">
+            <div class="input">
+            <label for="textfield_new_firstname">First Name</label>
+            <input type="text" id="textfield_new_firstname" name="firstname">
+            <span class="spin"></span>
+            </div>
+
+            <div class="input">
+            <label for="email">Last Name</label>
+            <input type="text" id="textfield_new_lastname" name="lastname" >
+            <span class="spin"></span>
+            </div>
+
+            <div class="input">
+            <label for="textfield_new_lastname">Email</label>
+            <input type="text" id="email" name="email">
+            <span class="spin"></span>
+            </div>
+
+            <div class="input">
+            <label for="textfield_new_password">Password</label>
+            <input type="password" id="textfield_new_password" name="password">
+            <span class="spin"></span>
+            </div>
+
+            <div class="button login ">
+              <button type="submit">
+                <span>
+                  REGISTER
+                </span> 
+              </button>
+            </div>
+            </form>
+        </div>
+  </div>
+
+
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+  <!-- CSS  -->
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ 
+   <link href="css/home_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+ <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+<!--       <link rel="stylesheet" href="/scripts/material.min.css">
+      <script src="/scripts/material.min.js"></script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+
+
+      <title>Homepage!</title>
+    </head>
+ <body class="viewerhomepage01">
+     <% include viewer_navbar.html %>
+<link href="css/viewer_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+
+
+    <div class="row">
+      <br/>
+      <div class="col s1">
+      </div>
+      <div class="col s3">
+        <!-- Grey navigation panel -->
+        <div>
+
+          <ul class="collapsible popout" data-collapsible="accordion">
+            <li class="courses center collapsed-button">
+              <p><b><I>SPECIALIZATIONS</I></b> </p>
+            </li>
+
+            <% var genre_map = new Map(); %>
+            <% for(var i=0; i<all_users.length; i++) { %>
+            <%    for(var j=0; j<all_users[i].user.courses_created.length; j++) { %>
+            <%      var course = all_users[i].user.courses_created[j] %>
+            <%      var courses = genre_map.get(course.course_genre) %>
+            <%      if(undefined != courses) { %>
+            <%        courses.push(course.course_name); %>
+            <%        genre_map.set(course.course_genre, courses); %>
+            <%      } else { %>
+            <%        var course_list = []; %>
+            <%        course_list.push(course.course_name); %>
+            <%        genre_map.set(course.course_genre, course_list); } %>
+            <% } } %>
+            <% genre_map.forEach(function(value, key) { %>
+
+            <li>
+              <div class="collapsible-header">
+                <i class="material-icons">
+                </i>
+                <%= key %>
+              </div>
+              <div class="collapsible-body">
+                <ul class="collapsed-button">
+                <% for(var k=0; k<value.length; k++) {%>
+                  <li class="list-pad" class="navbar-color">
+                  <form id="myform" method="post" action="/enrollcourse">
+                      <button class="waves-effect btn-flat" type="submit" name="<%= value[k] %>"><%= value[k] %></button>
+                    </form>
+                  </li>
+                  <% } %>
+                </ul>
+              </div>
+            </li>
+          
+          <% }); %> 
+          </ul> 
+
+        
+  </div> 
+      </div>
+
+<div class="col s7 card">
+      <div class ="row search-push-down">
+            <nav>
+              <div class="nav-wrapper search-bar-size">
+                <form method="post" action="/search">
+                  <div class="input-field">
+                    <input id="search" type="search" name="search_word" required>
+                    <label for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                  </div>
+                </form>
+              </div>
+            </nav>
+      </div>
+
+          
+            <div class ="row">
+        <div class="col s7">
+          <h2> Popular Courses </h2>
+        </div>
+      </div>
+          
+
+
+      <div class ="row">
+            <div class="col s9 m4">
+        <!-- Teal page content  -->
+              <!-- Recommended courses lise -->
+      <div class="card small">
+          <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="images/algo.jpeg">
+        </div>
+
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"><p>Algorithms</p><i class="material-icons right"></i></span>
+          
+        </div>
+
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Algorithms<i class="material-icons right">close</i></span>
+          <p>This course covers information that every programmer needs to know about algorithms and data structures, with emphasis on applications of Java implementations.</p>
+        </div>
+      </div>
+
+
+      </div>
+
+            <div class="col s9 m4">
+        <!-- Teal page content  -->
+              <!-- Recommended courses lise -->
+      <div class="card small">
+          <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="images/indian.jpg">
+        </div>
+
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"><p>Indian</p><i class="material-icons right"></i></span>
+          
+        </div>
+
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Indian<i class="material-icons right">close</i></span>
+          <p>Traditionally, Indian food complements is a highlight of a balanced spectrum of flavors. Learn more about it through this course.</p>
+        </div>
+      </div>
+
+
+      </div>
+
+
+                  <div class="col s9 m4">
+        <!-- Teal page content  -->
+              <!-- Recommended courses lise -->
+      <div class="card small">
+          <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="images/bigdata.jpeg">
+        </div>
+
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"><p>Big Data</p><i class="material-icons right"></i></span>
+          
+        </div>
+
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Big Data<i class="material-icons right">close</i></span>
+          <p>You will gain an understanding of what insights big data can provide through experience with the tools used by big data scientists and engineers. </p>
+        </div>
+      </div>
+
+
+      </div>
+
+
+      </div>
+
+
+
+      <div class ="row">
+            <div class="col s9 m4">
+        <!-- Teal page content  -->
+              <!-- Recommended courses lise -->
+      <div class="card small">
+          <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="images/thai.jpg">
+        </div>
+
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"><p>Thai</p><i class="material-icons right"></i></span>
+          
+        </div>
+
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Thai<i class="material-icons right">close</i></span>
+          <p>This guide to Thai take-out contains a list of the most popular appetizers and introductions from Chinese takeaways and restaurants throughout the world.</p>
+        </div>
+      </div>
+
+
+      </div>
+
+            <div class="col s9 m4">
+        <!-- Teal page content  -->
+              <!-- Recommended courses lise -->
+      <div class="card small">
+          <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="images/football.jpeg">
+        </div>
+
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"><p>Football</p><i class="material-icons right"></i></span>
+          
+        </div>
+
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Football<i class="material-icons right">close</i></span>
+          <p>This course provides easy ways to learn some of the coolest tricks and skills of soccer</p>
+        </div>
+      </div>
+
+
+      </div>
+
+
+                  <div class="col s9 m4">
+        <!-- Teal page content  -->
+              <!-- Recommended courses lise -->
+      <div class="card small">
+          <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="images/tennis.jpeg">
+        </div>
+
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"><p>Tennis</p><i class="material-icons right"></i></span>
+          
+        </div>
+
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Tennis<i class="material-icons right">close</i></span>
+          <p>No time to learn tennis in the court! No problem. This course provides videos to understand the game and learn more about it.</p>
+        </div>
+      </div>
+
+
+      </div>
+
+
+      </div>
+
+</div>
+
+
+
+    </div>
+          
+
+
+
+

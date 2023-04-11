@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/home_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/login_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <title>Uploader profile!</title>
+</head>
+ 
+<body class="editpage">
+
+  <% include uploader_navbar.html %>
+  <link href="css/uploader_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <div class="container">
+    <div class="row">
+
+        <div class=forms-pad>
+          <div class="col s4">
+
+                <div class="card">
+                  <div class="card-content">
+                    <span class="title color-green ">Course Details</span>
+                     <form method="POST" action="/addCourse">
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="textfield_course_name" type="text" value='<%= course_details.course_name %>' name="course_name" >
+                          <label for="textfield_course_name">Name</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="textfield_course_desc" type="text" value='<%= course_details.course_description %>'  class="validate" name="course_description">
+                          <label for="textfield_course_desc">Description</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="textfield_course_genre" type="text" class="validate" value='<%= course_details.course_genre %>' name="course_genre">
+                          <label for="textfield_course_genre">Genre</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12 center">
+                          <button class="btn waves-effect waves-light" type="submit" name="action">Update Course
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+          </div>
+        </div>
+
+        <div>
+          <div class="col s4 modify-input-field ">
+
+                <div class="card">
+                  <div class="card-content">
+                    <span class="title color-green ">Video Details</span>
+                     <form id        =  "uploadForm"
+                    enctype   =  "multipart/form-data"
+                    action    =  "/addVideo"
+                    method    =  "post">
+
+<input id="textfield_course_name" type="text" value='<%= course_details.course_name %>' class="validate" name="course_name" hidden>
+
+                      <div class="row">
+                        <div class="input-field col s12 no-margin">
+                          <input id="textfield_videoname" type="text" name="video_name" class="validate no-margin">
+                          <label for="textfield_videoname">Name</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12 no-margin">
+                          <input id="textfield_videodesc" type="text" name="video_desc"  class="validate no-margin">
+                          <label for="textfield_videodesc">Description</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12 no-margin">
+                          <input id="textfield_quizqn" type="text" class="validate no-margin" name="video_quizqn">
+                          <label for="textfield_quizqn">Quiz Question</label>
+                        </div>
+                      </div>
+                      <div class="row ">
+                      <label for="textfield_quizans">Quiz Answer</label>
+                      </div>
+                      <div class="row">
+                        <div class="col s6">
+                          <input name="video_quizans" type="radio" id="true" value="1"/>
+                          <label for="true">True</label>
+                        </div>
+                        <div class="col s6">
+                          <input name="video_quizans" type="radio" id="false" value="2"/>
+                          <label for="false">False</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12 no-margin">
+                          <input id="textfield_videokeyword" type="text" name="video_keyword"  class="validate no-margin">
+                          <label for="textfield_videokeyword">Keywords</label>
+                        </div>
+                      </div>
+                      <div class="file-field input-field no-margin">
+                        <div class="btn">
+                          <span>Video</span>
+                          <input type="file" name="userPhoto" id="uploadBtn" accept=".mp4">
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text" placeholder="Upload a video file" id="uploadFile">
+                        </div>
+                      </div>
+                      <div class="file-field input-field no-margin">
+                        <div class="btn">
+                          <span>Image</span>
+                          <input type="file" name="userPhoto" id="uploadImageBtn" accept=".jpeg,.jpg">
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text" placeholder="Upload an image" id="uploadImage">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12 no-margin center">
+                          <button class="btn waves-effect waves-light " type="submit" name="action">Add Video
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                <script>
+                  document.getElementById("uploadBtn").onchange = function () {
+                      document.getElementById("uploadFile").value = this.files[0].name;
+                  };
+
+                  document.getElementById("uploadImageBtn").onchange = function () {
+                      document.getElementById("uploadImage").value = this.files[0].name;
+                  };
+                </script>
+                  </div>
+                </div>
+
+          </div>
+        </div>
+
+    <div>
+      <div class="col s4">
+
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title color-green ">Video List</span>
+                  <ul class="collection" id="vid_list">
+                  <%  for(var i=0; i<course_details.videos.length; i++) { %>
+                    <li class="collection-item avatar" data-val='<%= course_details.videos[i].video_name %>'>
+                      
+                      <span class="title"><%= course_details.videos[i].video_name %></span>
+                      <p class="secondary-content"> 
+                      <span>
+                       <a   href="javascript:videoDelete('<%= course_details.course_name %>', '<%= course_details.videos[i].video_filename %>')"><i class="material-icons">delete</i></a>
+                       </span>
+                      <% if(i != 0) { %>
+                      <span>
+                      <a href="javascript:shiftUp('<%= course_details.course_name %>', '<%= course_details.videos[i].video_filename %>')"><i class="material-icons">keyboard_arrow_up</i></a>
+                      </span>
+                      <% } %>
+                      <% if(i != course_details.videos.length-1) { %>
+                      <span>
+                      <a href="javascript:shiftDown('<%= course_details.course_name %>', '<%= course_details.videos[i].video_filename %>')"><i class="material-icons">keyboard_arrow_down</i></a>
+                      <% } %>
+                     </span>
+                      </p>
+                    </li>
+
+                     <%  }%>
+                  </ul>
+              </div>
+            </div>
+
+      </div>
+    </div>
+
+    </div>
+
+  </div>
+
+
+    <script> 
+              function shiftUp(course_name, video_filename) {
+                
+                $.ajax({
+                    url : '/shiftUp',
+                    type : 'POST',
+                    data : {
+                        coursename : course_name,
+                        video_filename : video_filename
+                    },
+                    error : function(xhr, textStatus, thrownError) {
+                        console.log("Errorr");
+                        console.log(thrownError);
+                        console.log(textStatus);
+                        console.log(xhr);
+                    },
+                    success : function(data) {
+                        console.log("Shifted UPPPP!!!!");
+                        console.log(data.videos);
+                        console.log(data.course_name);
+                        document.getElementById('vid_list').innerHTML = "";
+                        
+                        for(var i=0; i<data.videos.length; i++) {
+
+                          var newLi = document.createElement("li");
+                          newLi.setAttribute('class','collection-item avatar');
+                          newLi.setAttribute('data-val', data.videos[i].video_name);
+
+                          
+                          var span_primary_name = document.createElement("span");
+                          span_primary_name.setAttribute('class','title');
+                          span_primary_name.innerHTML = data.videos[i].video_name;
+
+                          // var span_secondary = document.createElement("span");
+                          // span_secondary.setAttribute('class', 'mdl-list__item-secondary-content');
+                          
+                          var a_shift_up = document.createElement("a");
+                          // a_shift_up.setAttribute('class', 'mdl-list__item-secondary-action');
+                          var a_up_content = "javascript:shiftUp('"+data.course_name + "', '" + data.videos[i].video_filename + "')";
+                          a_shift_up.setAttribute('href', a_up_content);
+                          var i_shift_up = document.createElement("i");
+                          i_shift_up.setAttribute('class','material-icons');
+                          i_shift_up.innerHTML = "keyboard_arrow_up";
+
+                          var a_shift_down = document.createElement("a");
+                          // a_shift_down.setAttribute('class', 'mdl-list__item-secondary-action');
+                          var a_down_content = "javascript:shiftDown('"+data.course_name + "', '" + data.videos[i].video_filename + "')";
+                          a_shift_down.setAttribute('href', a_down_content);
+                          var i_shift_down = document.createElement("i");
+                          i_shift_down.setAttribute('class','material-icons');
+                          i_shift_down.innerHTML = "keyboard_arrow_down";
+
+                          var a_delete = document.createElement("a");
+                          // a_delete.setAttribute('class', 'mdl-list__item-secondary-action');
+                          var a_delete_content = "javascript:videoDelete('"+data.course_name + "', '" + data.videos[i].video_filename + "')";
+                          a_delete.setAttribute('href', a_delete_content);
+                          var i_delete = document.createElement("i");
+                          i_delete.setAttribute('class','material-icons');
+                          i_delete.innerHTML = "delete"; 
+
+                          document.getElementById('vid_list').appendChild(newLi);
+                          newLi.appendChild(span_primary_name);
+                          if(i != 0) {
+                            span_primary_name.appendChild(a_shift_up);
+                            a_shift_up.appendChild(i_shift_up);
+                          }
+                          if(i != data.videos.length-1 ) {
+                            span_primary_name.appendChild(a_shift_down);
+                            a_shift_down.appendChild(i_shift_down);
+                          }
+
+                          span_primary_name.appendChild(a_delete);
+                          a_delete.appendChild(i_delete);
+                        }
+                    }
+                });
+              }
+
+              function shiftDown(course_name, video_filename) {
+                
+                $.ajax({
+                    url : '/shiftDown',
+                    type : 'POST',
+                    data : {
+                        coursename : course_name,
+                        video_filename : video_filename
+                    },
+                    error : function(xhr, textStatus, thrownError) {
+                        console.log("Errorr");
+                        console.log(thrownError);
+                        console.log(textStatus);
+                        console.log(xhr);
+                    },
+                    success : function(data) {
+                        console.log("Shifted Downnnn!!!!");
+                        console.log(data.videos);
+                        console.log(data.course_name);
+                        document.getElementById('vid_list').innerHTML = "";
+                        
+                        for(var i=0; i<data.videos.length; i++) {
+
+                          var newLi = document.createElement("li");
+                          newLi.setAttribute('class','collection-item avatar');
+                          newLi.setAttribute('data-val', data.videos[i].video_name);
+
+                          // var span_primary = document.createElement("span");
+                          // span_primary.setAttribute('class','title');
+                          var span_primary_name = document.createElement("span");
+                          span_primary_name.innerHTML = data.videos[i].video_name;
+                          // var span_primary_time = document.createElement("span");
+                          // span_primary_time.setAttribute('class','title');
+                          // span_primary_time.innerHTML = "Video Time";
+
+                          // var span_secondary = document.createElement("span");
+                          // span_secondary.setAttribute('class', 'mdl-list__item-secondary-content');
+                          
+                          var a_shift_up = document.createElement("a");
+                          // a_shift_up.setAttribute('class', 'mdl-list__item-secondary-action');
+                          var a_up_content = "javascript:shiftUp('"+data.course_name + "', '" + data.videos[i].video_filename + "')";
+                          a_shift_up.setAttribute('href', a_up_content);
+                          var i_shift_up = document.createElement("i");
+                          i_shift_up.setAttribute('class','material-icons');
+                          i_shift_up.innerHTML = "keyboard_arrow_up";
+
+                          var a_shift_down = document.createElement("a");
+                          // a_shift_down.setAttribute('class', 'mdl-list__item-secondary-action');
+                          var a_down_content = "javascript:shiftDown('"+data.course_name + "', '" + data.videos[i].video_filename + "')";
+                          a_shift_down.setAttribute('href', a_down_content);
+                          var i_shift_down = document.createElement("i");
+                          i_shift_down.setAttribute('class','material-icons');
+                          i_shift_down.innerHTML = "keyboard_arrow_down";
+
+                          var a_delete = document.createElement("a");
+                          // a_delete.setAttribute('class', 'mdl-list__item-secondary-action');
+                          var a_delete_content = "javascript:videoDelete('"+data.course_name + "', '" + data.videos[i].video_filename + "')";
+                          a_delete.setAttribute('href', a_delete_content);
+                          var i_delete = document.createElement("i");
+                          i_delete.setAttribute('class','material-icons');
+                          i_delete.innerHTML = "delete"; 
+
+                          document.getElementById('vid_list').appendChild(newLi);
+                          newLi.appendChild(span_primary_name);
+                          // span_primary.appendChild(span_primary_time);
+                          // newLi.appendChild(span_secondary);
+                          if(i != 0) {
+                            span_primary_name.appendChild(a_shift_up);
+                            a_shift_up.appendChild(i_shift_up);
+                          }
+                          if(i != data.videos.length-1 ) {
+                            span_primary_name.appendChild(a_shift_down);
+                            a_shift_down.appendChild(i_shift_down);
+                          }
+
+                          span_primary_name.appendChild(a_delete);
+                          a_delete.appendChild(i_delete);
+                        }
+                    }
+                });
+              }
+
+              function videoDelete(course_name, video_filename) {
+                
+                $.ajax({
+                    url : '/videoDelete',
+                    type : 'POST',
+                    data : {
+                        coursename : course_name,
+                        video_filename : video_filename
+                    },
+                    error : function(xhr, textStatus, thrownError) {
+                        console.log("Errorr");
+                        console.log(thrownError);
+                        console.log(textStatus);
+                        console.log(xhr);
+                    },
+                    success : function(data) {
+                        console.log("Deleted!!!!");
+                        console.log(data.videos);
+                        console.log(data.course_name);
+                        document.getElementById('vid_list').innerHTML = "";
+                        
+                        for(var i=0; i<data.videos.length; i++) {
+
+                          var newLi = document.createElement("li");
+                          newLi.setAttribute('class','collection-item avatar');
+                          newLi.setAttribute('data-val', data.videos[i].video_name);
+                         
+                          var span_primary_name = document.createElement("span");
+                          span_primary_name.setAttribute('class','title');
+                          span_primary_name.innerHTML = data.videos[i].video_name;
+
+                          // var span_secondary = document.createElement("span");
+                          // span_secondary.setAttribute('class', 'mdl-list__item-secondary-content');
+                          
+                          var a_shift_up = document.createElement("a");
+                          // a_shift_up.setAttribute('class', 'mdl-list__item-secondary-action');
+                          var a_up_content = "javascript:shiftUp('"+data.course_name + "', '" + data.videos[i].video_filename + "')";
+                          a_shift_up.setAttribute('href', a_up_content);
+                          var i_shift_up = document.createElement("i");
+                          i_shift_up.setAttribute('class','material-icons');
+                          i_shift_up.innerHTML = "keyboard_arrow_up";
+
+                          var a_shift_down = document.createElement("a");
+                          // a_shift_down.setAttribute('class', 'mdl-list__item-secondary-action');
+                          var a_down_content = "javascript:shiftDown('"+data.course_name + "', '" + data.videos[i].video_filename + "')";
+                          a_shift_down.setAttribute('href', a_down_content);
+                          var i_shift_down = document.createElement("i");
+                          i_shift_down.setAttribute('class','material-icons');
+                          i_shift_down.innerHTML = "keyboard_arrow_down"; 
+
+                          var a_delete = document.createElement("a");
+                          // a_delete.setAttribute('class', 'mdl-list__item-secondary-action');
+                          var a_delete_content = "javascript:videoDelete('"+data.course_name + "', '" + data.videos[i].video_filename + "')";
+                          a_delete.setAttribute('href', a_delete_content);
+                          var i_delete = document.createElement("i");
+                          i_delete.setAttribute('class','material-icons');
+                          i_delete.innerHTML = "delete"; 
+
+                          document.getElementById('vid_list').appendChild(newLi);
+                          newLi.appendChild(span_primary_name);
+                          if(i != 0) {
+                            span_primary_name.appendChild(a_shift_up);
+                            a_shift_up.appendChild(i_shift_up);
+                          }
+                          if(i != data.videos.length-1 ) {
+                            span_primary_name.appendChild(a_shift_down);
+                            a_shift_down.appendChild(i_shift_down);
+                          }
+
+                          span_primary_name.appendChild(a_delete);
+                          a_delete.appendChild(i_delete);
+                        }
+                    }
+                });
+              }
+        </script>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/index.js"></script>
+
+</body>
+</html>

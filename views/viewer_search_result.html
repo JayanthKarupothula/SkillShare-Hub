@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+      <!-- CSS  -->
+
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="css/home_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+
+      <title>Homepage!</title>
+
+    </head>
+
+   <body class="viewerhomepage01">
+      <% include viewer_navbar.html %>
+      <link href="css/viewer_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+      <div class="row">
+        <br/>
+        <div class="col s1">
+        </div>
+
+        <div class="col s10">
+          <div class ="row search-push-down">
+            <nav>
+              <div class="nav-wrapper search-bar-size">
+                <form method="post" action="/search">
+                  <div class="input-field">
+                  <input id="search" type="search" name="search_word" required>
+                  <label for="search"><i class="material-icons">search</i></label>
+                  <i class="material-icons">close</i>
+                  </div>
+                </form>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col s1">
+        </div>
+
+        <div class="col s10">
+          <div class="card playlist-card"> 
+            <div class="card-content">
+                <% for(var i=0; i<search_result.length; i++) { %>  
+          
+                <div class="card horizontal playlist-card">
+                  <div class="new-card-image">
+                  <div class="new-card-inner">
+                    <% if(search_result[i].type === 'course') { %>
+                    <img src="/images/courseicon.jpeg">
+                    <% } else {%>
+                    <img src="/images/videoicon.jpg">
+                    <% } %>
+                  </div>
+                  </div>
+
+                  <div class="card-stacked">
+                    <div class="card-content">
+                          <% if(search_result[i].type === 'course') { %>
+                            <form action="/enrollcourse" method="POST">
+                              <p> Course: </p>
+                              <button type="submit" class="waves-effect btn-flat" name='<%= search_result[i].course_details.course_name %>'>
+                                <%= search_result[i].course_details.course_name %>
+                              </button>
+                            </form>
+
+                          <% } else {%>
+                            <form action="/resultvideo" method="POST">
+                                <p> Video: </p>
+                                <button type="submit" class="waves-effect btn-flat" name='<%= search_result[i].course_details.course_name %>'>
+                                  <%= search_result[i].video.video_name %>
+                                </button>
+                                <% var video_string = JSON.stringify(search_result[i].video) %>
+                                <input type="text" name="result_video" value='<%= video_string %>' hidden />
+                            </form>
+                          <% } %>
+                    </div>
+                  </div>
+                </div>
+                <br/>
+                <% } %> 
+            </div>
+          </div>
+        </div>
+
+
+        <!--
+
+ <ul>
+                  <% for(var i=0; i<search_result.length; i++) { %>   
+                      <li class="mdl-list__item">
+                        <span class="mdl-list__item-primary-content">
+                          <% if(search_result[i].type === 'course') { %>
+                            <i class="material-icons mdl-list__item-avatar">C</i>
+                            <form action="/enrollcourse" method="POST">
+                              <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect" name='<%= search_result[i].course_details.course_name %>'>
+                                <%= search_result[i].course_details.course_name %>
+                              </button>
+                            </form>
+
+                          <% } else {%>
+                            <i class="material-icons mdl-list__item-avatar">V</i>
+                            <form action="/resultvideo" method="POST">
+                                <button type="submit" class="mdl-button mdl-js-button mdl-js-ripple-effect" name='<%= search_result[i].course_details.course_name %>'>
+                                  <%= search_result[i].video.video_name %>
+                                </button>
+                                <% var video_string = JSON.stringify(search_result[i].video) %>
+                                <input type="text" name="result_video" value='<%= video_string %>' hidden />
+                            </form>
+                            <% } %>
+                        </span>
+                      </li>
+                    
+                  <% } %>
+                </ul>
+
+        -->
+
+      </div>
+      <br/><br/><br/><br/>
+
+      <!--  Scripts-->
+      <!-- <script src="js/materialize.js"></script>
+      <script src="js/init.js"></script>
+      -->
+
+    </body>
+</html>

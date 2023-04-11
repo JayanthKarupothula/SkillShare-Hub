@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- CSS  -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="css/home_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <link href="css/login_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+        <title>Create course!</title>
+
+    </head>
+    <body class="createpage">
+      <% include uploader_navbar.html %>
+      <link href="css/uploader_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <br/><br/><br/>
+
+      <div class="materialContainer update-profile-box">
+        <div class="box row" style="display: inline-block;  border: 1px solid #EEE;">
+          <div class="title color-green">Course Details</div>
+          <form method="POST" action="/addCourse">
+            
+                <div class="input">
+                  <label for="textfield_course_name">Course Name</label>
+                  <input class= "remove-border" type="text" id="textfield_course_name" name="course_name" />
+                  <span class="spin"></span>  
+                </div>
+
+                <div class="input">
+                  <label for="textfield_course_description">Course Description</label>
+                  <input class= "remove-border" type="text" id="textfield_course_description" name="course_description" />
+                  <span class="spin"></span>
+                </div>
+
+                <div class="input">
+                  <label for="textfield_course_genre">Course Genre</label>
+                  <input class= "remove-border" type="text" id="textfield_course_genre" name="course_genre" />
+                  <span class="spin"></span>
+                </div>
+
+
+                <div class="button login ">
+                  <button type="submit">
+                    <span>
+                       Add Course
+                    </span> 
+                  </button>
+                </div>
+          </form>
+        </div>
+    </div>
+
+    </body>
+</html>

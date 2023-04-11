@@ -1,0 +1,164 @@
+.side-nav { 
+  position: fixed;
+  width: 300px;
+  left: 0;
+  top: 65px;
+  margin: 0;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  height: 100%;
+  height: calc(100% + 60px);
+  height: -moz-calc(100%);
+  padding-bottom: 60px;
+  background-color: #fff;
+  z-index: 999;
+  overflow-y: auto;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform: translateX(-105%);
+          transform: translateX(-105%);
+}
+
+.inner-list {
+  text-align: right;
+}
+
+.searchbar-color{
+  /*background-color: #521616;*/
+  background-color: #260C1A;
+  color: #E6E6EA !important;
+  <!-- #BD0303 !important-->
+}
+
+.searchbar-pad{
+  padding-left: -10px;
+}
+
+nav .input-field-search {
+  margin: 0;
+  height: 100%;
+  width: 1000px;
+}
+
+.list-background {
+  background-color: #009FB7;
+  text-decoration-color: #260C1A; 
+}
+
+.pad {
+  padding-left: 30px;
+  padding-right: 10px;
+}
+
+.navbar-pad {
+  padding-top: 30px;
+}
+
+
+.search-bar-size {
+    width: 100%;
+    background-color: #246A73;
+}
+
+
+.search-pad {
+  padding: 10px;
+  background-color: #E6E6EA;
+}
+
+.search-push-down {
+  padding-top: 10px;
+}
+
+.list-pad {
+   padding-top: 5px;
+   padding-bottom: 5px;
+   padding-left: 35px;
+}
+
+.list-further-pad{
+   padding-top: 5px;
+   padding-bottom: 5px;
+   padding-left: 55px;
+}
+
+a {
+  color: #260C1A !important;
+}
+
+.courses {
+  height: 64px;
+  padding-top: 5px;
+}
+
+.likes-box {
+  width: 640px;
+}
+
+.playlist-box {
+  padding-left: 100px;
+}
+
+.playlist-card {
+  margin: 0rem;
+}
+
+.comments-box {
+  width: 640px;
+}
+
+.video-box {
+  width: 640px;
+}
+
+.input-field label.active {
+    font-size: 1rem;
+    -webkit-transform: translateY(-140%);
+    transform: translateY(-70%);
+}
+
+.card .card-action-comments {
+  position: relative;
+  background-color: inherit;
+  border-top: 1px solid rgba(160, 160, 160, 0.2);
+  padding: 0px;
+}
+
+.update-profile-box {
+  padding-top: 100px;
+}
+
+.remove-border {
+  border-bottom: 0px solid #9e9e9e !important;
+}
+
+.forms-pad {
+  padding-top: 10px;
+}
+
+.modify-input-field {
+    position: relative;
+    margin-top: 0rem;
+}
+
+.no-margin {
+  margin: 0px !important;
+}
+
+.edit-card {
+  padding: 25px !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

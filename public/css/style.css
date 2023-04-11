@@ -1,0 +1,255 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+nav ul a,
+nav .brand-logo {
+  color: #ffffff;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.button-collapse {
+  color: #26a69a;
+}
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+
+.carousel-div{
+  height: 625px;
+}
+
+.homepage01 {
+  background-image: url("/images/home1.jpg");
+  background-size: 1349px 600px;
+}
+
+.homepage02 {
+  background-image: url("/images/homepage04.jpeg");
+  background-size: 1349px 600px;
+}
+
+.homepage03 {
+  background-image: url("/images/coffee-smartphone-desk-pen.jpg");
+  background-size: 1349px 800px;
+}
+
+.homepage04 {
+  background-image: url("/images/homepage02.jpg");
+  background-size: 1349px 600px;
+}
+
+.homepage05 {
+  background-image: url("/images/pexels-photo-225957.jpeg");
+  background-size: 1349px 1000px;
+}
+
+.homepage06 {
+  background-image: url("/images/people-office-group-team.jpg");
+  background-size: 1349px 1000px;
+}
+
+.homepage07 {
+  background-image: url("/images/books-magazines-building-school.jpg");
+  background-size: 1349px 1000px;
+}
+
+.homepage08 {
+  background-image: url("/images/startup-photos.jpg");
+  background-size: 1349px 1000px;
+}
+
+.viewerhomepage01 {
+  background-image: url("/images/image02.jpg");
+}
+
+.uploaderpage {
+  background-image: url("/images/books-magazines-building-school.jpg");
+   background-size: 1349px 1000px;
+}
+
+.editpage {
+  background-image: url("/images/editpage.jpeg");
+   background-size: 1349px 1000px;
+}
+
+.createpage {
+  background-image: url("/images/edit.jpg");
+   background-size: 1349px 1000px;
+}
+
+.paypalpage {
+  background-image: url("/images/donation.jpeg");
+   background-size: 1349px 1000px;
+}
+
+.loginpage {
+  background-image: url("/images/homepage06.jpeg");
+}
+
+.adminhomepage {
+  background-image: url("/images/admin.jpeg");
+}
+
+.carousel-div1{
+  padding-top: 250px;
+}
+
+.carousel-left {
+  padding-left: 100px;
+  float:left;
+}
+
+.carousel-right {
+  padding-top: 120px !important;
+  padding-right: 100px !important;
+}
+
+.carousel-center {
+  padding-right: 150px !important;
+}
+
+.carousel .carousel-item {
+  display: none;
+  width: 200px;
+  height: 400px;
+  position: absolute;
+  top: -165px;
+  left: 0;
+}
+
+.section-size {
+  width: 100%;
+  height: 620px !important;
+}
+
+.home-carousel-item {
+  width:500px !important;
+  height:500px !important;
+  position: relative;
+  margin: 0.5rem 0 1rem 0;
+  background-color: #fff;
+  transition: box-shadow .25s;
+  border-radius: 2px;
+}
+
+.carousel {
+  width: 100% !important;
+  height: 600px !important;
+}
+
+.home-carousel-item-image {
+  width:150px !important;
+  height:150px !important;
+}
+
+.color-height {
+  height: 100px;
+}
+
+.home-carousel-image-position {
+  position: absolute;
+  top: 75px;
+  left: 175px;
+}
+
+.home-carousel-text-position {
+  position: absolute;
+  top: 250px;
+  left: 50px;
+  right: 50px;
+  text-align: justify;
+}
+
+.polina { 
+  font-family: Agenda-Light, Agenda Light, Agenda, Arial Narrow, sans-serif;
+  font-weight:100;
+  background: rgba(0,0,0,0.75);
+  color: white;
+  padding: 2rem;
+  margin:2rem;
+  float: right;
+  width: 40%;
+  font-size: 1.2rem;
+  letter-spacing: 0.3rem;
+}
+
+.polina-left { 
+  font-family: Agenda-Light, Agenda Light, Agenda, Arial Narrow, sans-serif;
+  font-weight:100;
+  background: rgba(0,0,0,0.75);
+  color: white;
+  padding: 2rem;
+  margin:2rem;
+  
+  width: 50%;
+  font-size: 1.2rem;
+  letter-spacing: 0.3rem;
+}
+
+.contact {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  background:rgba(0,0,0,0.5);
+  padding: .5rem;
+  transition: .6s background; 
+}
+.contact:hover{
+  background:rgba(0,0,0,0.9);
+}
+
+.pad-top {
+  padding-top: 50px;
+}
+
+.join-community-text {
+  padding-top: 100px !important;
+}
+
+.quiz-div {
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+}

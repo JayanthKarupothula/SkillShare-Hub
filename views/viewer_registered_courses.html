@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+      <!-- CSS  -->
+
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="css/home_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+      <title>Homepage!</title>
+
+    </head>
+
+ <body class="viewerhomepage01">
+      <% include viewer_navbar.html %>
+      <link href="css/viewer_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+
+      <div class="row">
+        <br/>
+        <div class="col s1">
+        </div>
+
+        <div class="col s10">
+          <div class ="row search-push-down">
+            <nav>
+              <div class="nav-wrapper search-bar-size">
+                <form method="post" action="/search">
+                  <div class="input-field">
+                  <input id="search" type="search" name="search_word" required>
+                  <label for="search"><i class="material-icons">search</i></label>
+                  <i class="material-icons">close</i>
+                  </div>
+                </form>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col s1">
+        </div>
+
+        <!--
+
+
+      <div class="card horizontal">
+      <div class="card-image">
+        <img src="http://lorempixel.com/100/190/nature/6">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <p>I am a very simple card. I am good at containing small bits of information.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+
+
+        -->
+        <% var imagearray = ['images/algo.jpeg','images/indian.jpg', 'images/bigdata.jpeg', 'images/thai.jpg', 'images/football.jpeg', 'images/tennis.jpeg']; %>
+
+
+        <div class="col s10">
+          <div class="card playlist-card">
+            <div class="card-content">
+                <%      var course_list = []; %>
+                <% var imagecount = 0; %>
+                <% for(var i=0; i<all_users.length; i++) { %>
+                <%    for(var j=0; j<all_users[i].user.courses_created.length; j++) { %>
+                <%      var course = all_users[i].user.courses_created[j] %>
+                <%      if(courses_enrolled.indexOf(course.course_name) > -1) { %>
+                <div class="card horizontal">
+                <div class="new-card-image">
+                  <div class="new-card-inner">
+                    <img src='<%= imagearray[imagecount] %>'>
+                    <% imagecount+=1 %>
+                  </div>
+                </div>
+                
+                <div class="card-stacked">
+                <div class="card playlist-card">
+                  <div class="card-content">
+                        <form id="myform" method="post" action="/enrollcourse">
+                          <input type="hidden" name='<%= course.course_name %>' value="<%= course.course_name %>" /> 
+                          <a onclick="document.getElementById('myform').submit();"><%= course.course_name %></a>
+                        </form>
+                        <p class="list-pad" > About this course: </p>
+                        <p class="list-further-pad" > <%= course.course_description %> </p>
+                        <p class="list-pad" > Specialization: </p>
+                        <p class="list-further-pad" > <%= course.course_genre %> </p>
+                  </div>
+                </div>
+                </div>
+                </div>
+               <br/>
+                <% course_list.push(course); %>
+                <% } %>
+                <% } %>
+                <% } %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <br/><br/><br/><br/>
+
+      <!--  Scripts-->
+      <!-- <script src="js/materialize.js"></script>
+      <script src="js/init.js"></script>
+      -->
+
+    </body>
+</html>

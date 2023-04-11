@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/home_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!-- <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
+
+    <!-- JS -->
+    <script  src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/js/jwplayer.js"></script>
+    <script>jwplayer.key="fNMS9OobQNK60RX98PytRr3Zm8QrkDYmnapXlA==";</script>
+
+    <title>You Enrolled to this Course!</title>
+    </head>
+
+     <body class="viewerhomepage01">
+        <% include viewer_navbar.html %>
+        <link href="css/viewer_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+          
+
+         
+        <% if("" != currentvideo) { %>
+        <%    var current_video = currentvideo %>
+        <% } else { %>
+        <%    var current_video = videos[0] %>
+        <% } %>
+        <% var video_name = "/videos/" + current_video.video_filename %>
+
+        <% var video_thumbnail_vttfile = "/videos/" + current_video.video_thumbnail_vttfile %>
+        <% var video_marker_vttfile = "/videos/" + current_video.video_marker_vttfile %>
+        <% var video_quiz_qn = current_video.video_quiz_qn %>
+        <% var video_quiz_ans = current_video.video_quiz_ans %>
+
+              <div class="row">
+                <div class="col s1">
+                </div>
+                <div class="col s6">
+                   <h1 class="white-text"> <%= coursename %></h1>
+                </div>
+                <div class="col s4">
+                <br /> <br /> <br />
+                    <div class="row">
+                        <div class="col s12 m4 l2"></div>
+                        <div class="col s12 m4 l10">
+                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_donations">
+                            <input type="hidden" name="business" value='shettya@umail.iu.edu'>
+                            <input type="hidden" name="lc" value="US">
+                            <input type="hidden" name="item_name" value='<%= coursename %>'>
+                            <input type="hidden" name="no_note" value="0">
+                            <input type="hidden" name="currency_code" value="USD">
+                            <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
+                            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                        </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s1">
+                </div>
+            </div>
+            <div class="row">
+            <div class="col s1">
+            </div>
+
+            <div class="col s6">
+                <div>
+                <div id="player"></div>
+                    <script type="text/javascript">
+                        jwplayer("player").setup({
+                          
+                            file: '<%= video_name %>',
+                            height: "360",
+                            width: "640",
+                            tracks: [{ 
+                            file: '<%= video_thumbnail_vttfile %>',
+                            kind: "thumbnails"
+                            }, {
+                            file:'<%= video_marker_vttfile %>',
+                            kind:'chapters'
+                            }]
+                        
+                        });
+                        var clicked = false;
+                        var ques = '<%= video_quiz_qn %>';
+                        jwplayer().onReady(function() { 
+                          jwplayer().onTime(function(event) {
+                              if(Math.floor(event.position) == 3 && !clicked) {
+                                    clicked = true;
+                                    jwplayer().pause();
+                                    var bgdiv = document.createElement("div");
+
+                                    var texdiv = document.createElement("div");
+                                    var quizform = document.createElement("form");
+                                    var quizquestion = document.createElement("p");
+                                    var truebutton = document.createElement("input");
+                                    var truebuttondiv = document.createElement("p");
+                                    var truebuttonlabel = document.createElement("label");
+                                    var falsebutton = document.createElement("input");
+                                    var falsebuttondiv = document.createElement("p");
+                                    var falsebuttonlabel = document.createElement("label");
+                                    var breaktag = document.createElement('br');
+                                    // var submit = document.createElement("button");
+                                    var submit = document.createElement('a');
+
+                                    if (jwplayer().getRenderingMode() == "html5"){
+                                      var theBody = document.getElementById(player.id);
+                                    } else {
+                                      var theBody = document.getElementById(player.id+"_wrapper");
+                                    }
+                                    var playerWidthPX2 = theBody.style.width;
+                                    var playerWidthPX = parseFloat(playerWidthPX2);
+                                    var playerHeightPX2 = theBody.style.height;
+                                    var playerHeightPX = parseFloat(playerHeightPX2);
+
+                                    bgdiv.setAttribute('id', 'bg');
+                                    bgdiv.style.height = playerHeightPX + "px";
+                                    bgdiv.style.width = playerWidthPX2;
+                                    bgdiv.style.background = "#333333";
+                                    bgdiv.style.opacity = "0.70";
+                                    bgdiv.style.position = "absolute";
+                                    bgdiv.style.zIndex = "900";
+
+                                    texdiv.style.textAlign = "center";
+                                    texdiv.style.paddingTop  = playerHeightPX/2.0;
+
+                                    quizquestion.innerHTML = ques;
+                                    quizquestion.style.fontFamily = "arial,_sans";
+                                    quizquestion.style.fontSize = "18px";
+                                    quizquestion.style.color = "#000"
+
+                                    truebuttonlabel.innerHTML = 'TRUE';
+                                    truebuttonlabel.setAttribute('for','true');
+                                    truebuttondiv.style.color = "#000";
+                                    truebutton.name = 'quizanswer';
+                                    truebutton.value = 'True';
+                                    truebutton.type = 'radio';
+                                    truebutton.setAttribute('id', 'true');
+                                    truebutton.style.fontFamily = "arial,_sans";
+
+                                    falsebuttonlabel.innerHTML = 'FALSE';
+                                    falsebuttonlabel.setAttribute('for','false');
+                                    falsebuttondiv.style.color = "#000"
+                                    falsebutton.name = 'quizanswer';
+                                    falsebutton.value = 'False';
+                                    falsebutton.type = 'radio';
+                                    falsebutton.setAttribute('id', 'false');
+                                    falsebutton.style.fontFamily = "arial,_sans";
+
+                                    var message = 'Submit';
+                                    submit.innerHTML = message;
+                                    submit.href = "#";
+                                    submit.style.textDecoration = "none";
+                                    submit.style.outline = "0";
+                                    submit.style.MozUserSelect = 'none';
+                                    submit.style.KhtmlUserSelect = 'none';
+                                    submit.style.WebkitUserSelect = 'none';
+                                    submit.style.OUserSelect = 'none';
+                                    submit.style.UserSelect = 'none';
+                                    submit.style.fontSize = "18px";
+                                    submit.style.color = "#ffffff";
+                                    submit.style.fontFamily = "arial,_sans";
+                                    submit.setAttribute('id', 'txt');
+
+
+                                    theBody.appendChild(bgdiv); 
+                                    bgdiv.appendChild(texdiv); 
+                                    texdiv.setAttribute('class','quiz-div');
+                                    texdiv.appendChild(quizform);
+                                    quizform.appendChild(breaktag);
+                                    quizform.appendChild(quizquestion);
+                                    quizform.appendChild(breaktag);
+                                    quizform.appendChild(truebuttondiv);
+                                    truebuttondiv.appendChild(truebutton);
+                                    truebuttondiv.appendChild(truebuttonlabel);
+                                    quizform.appendChild(breaktag);
+                                    quizform.appendChild(falsebuttondiv);
+                                    falsebuttondiv.appendChild(falsebutton);
+                                    falsebuttondiv.appendChild(falsebuttonlabel);
+                                    
+                                    quizform.appendChild(breaktag);
+                                    quizform.appendChild(submit);
+                                    quizform.appendChild(breaktag);
+
+                                    var ans = <%= video_quiz_ans %>;
+                                    var errordiv = document.createElement("div");
+                                    errordiv.innerHTML = 'Incorrect Answer. Try again!';
+                                    errordiv.style.visibility = "hidden";
+                                    errordiv.style.color = "#000000";
+                                    quizform.appendChild(errordiv);
+                                    quizform.appendChild(breaktag);
+                                    submit.onmouseup = function(){
+                                      if((document.getElementById("true").checked && ans == true) || (document.getElementById("false").checked && ans == false)){
+                                        bgdiv.style.display = "none"; 
+                                        jwplayer().play();
+                                      }
+                                      else{
+                                        errordiv.style.visibility = "visible";
+                                      }
+                                      
+                                    }
+
+
+                                    quizform.style.zIndex = "990";
+                                    submit.style.zIndex = "999";
+                                    truebutton.style.zIndex = "999";
+                                    falsebutton.style.zIndex = "999";
+
+                              }
+                          });
+
+                        });
+                    </script>
+                  </div>
+
+                  <div class="likes-box">
+                      <div class="card">
+                        <div class="card-content">
+                            <span class="card-title"><%= current_video.video_name %> <br /></span>
+                            <div class="row">
+                                <div class="col s10">
+                                    <p><%= current_video.video_desc %></p>
+                                </div>
+                            
+                                <div class="col s1">
+                                    <a href="#">
+                                        <form method="post" action="javascript:addLike('<%= coursename %>', '<%= current_video.video_filename %>', '<%= viewername %>')">
+                                             <input type="text" name="course_name" value='<%= coursename %>' hidden>
+                                             <input type="text" name="video_filename" id="current_playing_video" value='<%= current_video.video_filename %>' hidden>
+                                            <button type="submit" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored mdl-color--primary" name="like"><i class="material-icons">thumb_up</i></button><br/><br/>
+                                        </form>
+                                    </a>
+                                </div>
+
+                                <div class="col s1">
+                                    <a href="#">
+                                        <form method="post" action="javascript:addDislike('<%= coursename %>', '<%= current_video.video_filename %>', '<%= viewername %>')">
+                                             <input type="text" name="course_name" value='<%= coursename %>' hidden>
+                                             <input type="text" name="video_filename" id="current_playing_video" value='<%= current_video.video_filename %>' hidden>
+                                            <button type="submit" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored mdl-color--primary" name="like"><i class="material-icons">thumb_down</i></button><br/><br/>
+                                        </form>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class="comments-box">
+                      <div class="card ">
+                        <div class="card-content">
+                            <span class="card-title">
+                                <div>
+                                    <form method="post" action="javascript:addComment('<%= coursename %>', '<%= current_video.video_filename %>', '<%= viewername %>', '<%= comments %>')">
+                                         <input type="text" name="course_name" value='<%= coursename %>' hidden>
+                                         <input type="text" name="video_filename" id="current_playing_video" value='<%= current_video.video_filename %>' hidden>
+                                      <div class="row">
+                                        <div class="col s10">
+                                        <div class="input-field">
+                                          <textarea id="comment_area" class="materialize-textarea"></textarea>
+                                          <label for="comment_area">Comments</label>
+                                        </div>
+                                        </div>
+                                        
+                                        <div class="col s2">
+                                        <button type="submit" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored mdl-color--primary" name="comment"><i class="material-icons">send</i></button>
+                                        </div>
+
+                                      </div>
+                                    </form>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="card-action-comments">
+                            <ul class="collection" id="commentList">
+                                <% for(var i=0; i<comments.length; i++) { %>
+                                <li class="collection-item avatar">
+                                  <img src="images/image01.jpg" alt="" class="circle">
+                                  <span class="title"><%= comments[i].viewername %></span>
+                                  <p><%= comments[i].comment %><br>
+                                  </p>
+                                </li>
+                                <% } %>
+                              </ul>
+                        </div>
+                      </div>
+                  </div>
+
+            </div>
+
+            <div class="col s4">
+            <div class="row">
+                <div class="col s12 m4 l2"></div>
+                <div class="col s12 m4 l10">
+                    <div class="card playlist-card">
+                    <div class="card-content white-text">
+                      <% for(var j=0; j<videos.length; j++) { %>
+                      <div class="card playlist-card">
+                        <div class="card-content">
+                            <% var currentVid = {"file" : ""} %>
+                            <% currentVid.file = "/videos/" + videos[j].video_filename %>
+                            <% var vidName = "javascript:loadPlaylist(" + "{ 'file' :"+ "'/videos/" + videos[j].video_filename + "'})" %>
+                            <span class="card-title"><a href='<%= vidName %>' >
+                            <%= videos[j].video_name %>
+                            </span></a>
+                            <p>Video <%= j+1 %></p>
+
+                        </div>
+                    </div>
+                     <br/>
+                    <% } %>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- <div class="col s4">
+                <div class="card blue-grey darken-1 playlist-card">
+                    <div class="card-content white-text">
+                      <span class="card-title">Card Title</span>
+                      <p>I am a very simple card. I am good at containing small bits of information.
+                      I am convenient because I require little markup to use effectively.</p>
+                    </div>
+                    <div class="card-action">
+                      <a href="#">This is a link</a>
+                      <a href="#">This is a link</a>
+                    </div>
+                </div>
+            </div> -->
+
+
+            <!-- <div class="col s4">
+                <div>
+                <% for(var j=0; j<videos.length; j++) { %>
+                <% var currentVid = {"file" : ""} %>
+                <% currentVid.file = "/videos/" + videos[j].video_filename %>
+                <% var vidName = "javascript:loadPlaylist(" + "{ 'file' :"+ "'/videos/" + videos[j].video_filename + "'})" %>
+
+                <a href='<%= vidName %>' ><%= videos[j].video_filename %></a><br/>
+                </div>
+                <% } %>
+            </div> -->
+
+            <div class="col s1">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+      
+
+    <div class="mdl-layout">
+         
+
+        <script> 
+        function addLike(coursename, video_filename, viewername) {
+            console.log(coursename);
+            video_filename = document.getElementById("current_playing_video").getAttribute("value");
+            $.ajax({
+                url : '/addlike',
+                type : 'POST',
+                data : {
+                    coursename : coursename,
+                    video_filename : video_filename,
+                    viewername : viewername
+                },
+                error : function(xhr, textStatus, thrownError) {
+                    console.log("Errorr");
+                    console.log(thrownError);
+                    console.log(textStatus);
+                    console.log(xhr);
+                },
+                success : function() {
+                    console.log("Liked!!!!");
+                }
+
+            });
+            
+        }
+
+        function addDislike(coursename, video_filename, viewername) {
+            video_filename = document.getElementById("current_playing_video").getAttribute("value");
+            $.ajax({
+                url : '/adddislike',
+                type : 'POST',
+                data : {
+                    coursename : coursename,
+                    video_filename : video_filename,
+                    viewername : viewername
+                },
+                error : function(xhr, textStatus, thrownError) {
+                    console.log("Errorr");
+                    console.log(thrownError);
+                    console.log(textStatus);
+                    console.log(xhr);
+                },
+                success : function() {
+                    console.log("Disliked!!!!");
+                }
+
+            });
+        }
+        </script>
+        
+
+        <script type="text/javascript">
+        var current_playing_video = '';
+        function loadPlaylist(thePlaylist) {
+            current_playing_video = thePlaylist.file.substring(8);
+            
+            var list = document.getElementById("commentList");
+            list.innerHTML = '';
+            
+            console.log("current_playing_video : "+current_playing_video);
+            document.getElementById("current_playing_video").setAttribute("value", current_playing_video);
+            loadComments(current_playing_video);
+            jwplayer().load(thePlaylist)
+        }  
+
+        
+        function loadComments(current_playing_video) {
+            console.log(current_playing_video);
+            var videosList = eval($('#video').val());
+            console.log(videosList[0].video_filename);
+            for(var i=0; i < <%= videos.length %>; i++){
+
+                if(current_playing_video == videosList[i].video_filename){
+                    console.log("Found the video...loading comments...");
+                    for(var j=0; j<videosList[i].video_comments.length; j++){
+                        var currentcomment = videosList[i].video_comments[j];
+                        console.log(currentcomment.comment);
+                        var newcomment = document.createElement("li");
+                        var comment = document.createElement("p");
+                        var spanelememt = document.createElement("span");
+                        var image = document.createElement("img");
+                        var list = document.getElementById("commentList");
+                        image.setAttribute('class', 'circle');
+                        image.setAttribute('src', "images/image01.jpg");
+                        newcomment.setAttribute('class', 'collection-item avatar');
+                        spanelememt.setAttribute('class', 'title');
+                        spanelememt.innerHTML = currentcomment.viewername;
+                        comment.innerHTML = currentcomment.comment;
+
+
+                        newcomment.appendChild(image);
+                        newcomment.appendChild(spanelememt);
+                        newcomment.appendChild(comment);
+                        list.appendChild(newcomment);
+                    }
+                    break;
+                }
+            }
+        }
+        </script>
+
+        <div id="vids" hidden>
+           <input type="text" value= '<%- JSON.stringify(videos) %>' id="video">
+        </div>
+    
+    </div>
+
+    
+      <div class="row">
+     </div>
+
+      <script> 
+        function addComment(coursename, video_filename, viewername, comments) {
+                // comment = document.getElementById("comment_area").getAttribute("value");
+                comment = $('#comment_area').val();
+                
+                console.log(comment);
+                video_filename = document.getElementById("current_playing_video").getAttribute("value");
+                $.ajax({
+                    url : '/addcomment',
+                    type : 'POST',
+                    data : {
+                        coursename : coursename,
+                        video_filename : video_filename,
+                        comment : comment,
+                        viewername : viewername
+                    },
+                    error : function(xhr, textStatus, thrownError) {
+                        console.log("Errorr");
+                        console.log(thrownError);
+                        console.log(textStatus);
+                        console.log(xhr);
+                    },
+                    success : function(data) {
+                        console.log("Commented!!!!");
+                        console.log(data.comment);
+                        var newcomment = document.createElement("li");
+                        var comment = document.createElement("p");
+                        var spanelememt = document.createElement("span");
+                        var image = document.createElement("img");
+                        var list = document.getElementById("commentList");
+                        image.setAttribute('class', 'circle');
+                        image.setAttribute('src', "images/image01.jpg");
+                        newcomment.setAttribute('class', 'collection-item avatar');
+                        spanelememt.setAttribute('class', 'title');
+                        spanelememt.innerHTML = data.comment.viewername;
+                        comment.innerHTML = data.comment.comment;
+
+
+                        newcomment.appendChild(image);
+                        newcomment.appendChild(spanelememt);
+                        newcomment.appendChild(comment);
+                        list.appendChild(newcomment);
+                        document.getElementById("video").setAttribute('value', JSON.stringify(data.videos));
+                        $('#comment_area').val('');
+                    }
+
+                });
+                
+            }
+        </script>
+
+        
+
+             <!--  <div class="mdl-layout">
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_donations">
+            <input type="hidden" name="business" value='<%= paypal_email %>'>
+            <input type="hidden" name="lc" value="US">
+            <input type="hidden" name="item_name" value='<%= coursename %>'>
+            <input type="hidden" name="no_note" value="0">
+            <input type="hidden" name="currency_code" value="USD">
+            <input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+       
+      </div> -->
+    </body>
+</html>

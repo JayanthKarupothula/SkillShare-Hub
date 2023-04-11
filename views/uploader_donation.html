@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/home_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/login_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <title>Donation Email!</title>
+    
+</head>
+ 
+<body class="paypalpage">
+
+  <% include uploader_navbar.html %>
+  <link href="css/uploader_style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  
+  <div class="materialContainer update-profile-box">
+    <div class="box row" style="display: inline-block;  border: 1px solid #EEE;">
+      <div class="title color-green">Email for Paypal</div>
+      <form method="POST" action="/setDonation">
+        
+            <div class="input">
+              <label for="textfield_email">Email</label>
+              <input class= "remove-border" type="text" id="textfield_email" name="email"/>
+              <span class="spin"></span>  
+            </div>
+
+            <div class="button login ">
+              <button type="submit">
+                <span>
+                  Submit
+                </span> 
+              </button>
+            </div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/index.js"></script>
+
+</body>
+</html>
+
+
+
+
+<!--
+
+
+      <div class="mdl-layout">
+        <form method="post" action='/setDonation'>
+        <div class="mdl-cell mdl-cell--12-col send-button">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+                <label class="mdl-textfield__label mdl-color-text--grey" for="textfield_email">Email</label>
+                <% if("" != email) { %>
+                <input class="mdl-textfield__input" type="text" id="textfield_email" name="email" value='<%= email %>'/>
+                <% } else { %>
+                <input class="mdl-textfield__input" type="text" id="textfield_email" name="email"/>
+                <% } %>
+            </div>
+
+            <button type="submit" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored mdl-color--primary" name='set_donation'>
+            Submit
+            </button>
+        </div>
+        </form>
+        <br/>
+      </div>
+
+
+
+-->
